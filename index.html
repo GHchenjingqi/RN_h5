@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+    <title>H5 基座 (React)</title>
+    <!-- 子应用标识：必须在 api.js 之前注入（api.js 加载时读取） -->
+    <script>
+      window.__H5_APP_ID__ = 'app_h5';
+    </script>
+    <!-- Bridge 中间件：相对路径引入，随子包分发。生产直接用基座 h5/js/api.js 保持协议一致 -->
+    <script src="./js/api.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./src/main.jsx"></script>
+  </body>
+</html>

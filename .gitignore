@@ -1,0 +1,38 @@
+# 依赖
+/node_modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# 构建产物
+dist/
+dist-ssr/
+
+# 日志
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 本地环境变量 / 敏感配置
+.env
+.env.local
+.env.*.local
+
+# 编辑器 / 系统文件
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+
+# 同步脚本产生的备份
+*.backup
+
+package-lock.json

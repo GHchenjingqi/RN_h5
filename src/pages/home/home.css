@@ -1,0 +1,156 @@
+/* 顶部 hero 通栏（.page-hero 全局样式），页面自身不再留上边距 */
+.home-page {
+  padding: 0;
+}
+.home-body {
+  padding: 0.14rem;
+}
+
+/* 测试汇总数字 */
+.home-stats {
+  display: flex;
+  gap: 0.08rem;
+  margin-top: 0.16rem;
+}
+.home-stat {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.02rem;
+  align-items: center;
+  padding: 0.1rem 0;
+  border-radius: 0.1rem;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 0.01rem 0.05rem rgba(31, 63, 120, 0.06);
+  color: #7d8492;
+  font-size: 0.11rem;
+}
+.home-stat b {
+  color: #1a1a1a;
+  font-size: 0.2rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.home-stat--ok b {
+  color: #0a8a4a;
+}
+.home-stat--warn b {
+  color: #d48806;
+}
+.home-stat--err b {
+  color: #c0392b;
+}
+
+.home-card {
+  box-sizing: border-box;
+  margin-bottom: 0.12rem;
+  padding: 0.18rem;
+}
+.home-card__title {
+  margin: 0 0 0.16rem;
+  color: #1a1a1a;
+  font-size: 0.18rem;
+  font-weight: 600;
+}
+.home-card__subtitle {
+  margin: 0.16rem 0 0.08rem;
+  color: #555;
+  font-size: 0.14rem;
+  font-weight: 600;
+}
+.home-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.12rem;
+}
+.home-card__head .home-card__title {
+  margin: 0;
+}
+
+.home-env {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.08rem;
+  margin-bottom: 0.08rem;
+}
+.home-chip {
+  display: inline-block;
+  padding: 0.04rem 0.1rem;
+  border-radius: 0.06rem;
+  background: #f0f2f5;
+  color: #555;
+  font-size: 0.12rem;
+}
+.home-chip--ok {
+  background: #e6f7ee;
+  color: #0a8a4a;
+}
+.home-chip--no {
+  background: #fdecec;
+  color: #c0392b;
+}
+.home-chip--warn {
+  background: #fff7e6;
+  color: #d48806;
+}
+
+.home-caps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.08rem;
+}
+
+.home-summary {
+  color: #8a8f99;
+  font-size: 0.12rem;
+}
+
+.home-test {
+  padding: 0.1rem 0;
+  border-bottom: 1px solid #f0f2f5;
+}
+.home-test:last-child {
+  border-bottom: 0;
+}
+.home-test__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.04rem;
+}
+.home-test__label {
+  color: #1a1a1a;
+  font-size: 0.14rem;
+  font-weight: 500;
+}
+.home-test__detail {
+  color: #8a8f99;
+  font-size: 0.11rem;
+  word-break: break-all;
+  line-height: 1.5;
+}
+
+.home-badge {
+  padding: 0.02rem 0.08rem;
+  border-radius: 0.04rem;
+  font-size: 0.11rem;
+  font-weight: 500;
+}
+.home-badge--pending {
+  background: #f0f2f5;
+  color: #8a8f99;
+}
+.home-badge--success {
+  background: #e6f7ee;
+  color: #0a8a4a;
+}
+.home-badge--timeout {
+  background: #fff7e6;
+  color: #d48806;
+}
+.home-badge--error {
+  background: #fdecec;
+  color: #c0392b;
+}
+

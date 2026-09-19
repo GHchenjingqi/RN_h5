@@ -1,0 +1,180 @@
+html,body{
+    margin:0;
+    padding:0;
+    font-size:16px;
+    background:#f4f5f9;
+
+    --main-color: #216BFF;
+    --nutui-color-primary:var(--main-color);
+
+    /* =====================================================================
+       手机顶部状态栏高度（运行时由基座动态注入，此处为 fallback）
+       =====================================================================
+       用途：edge-to-edge 下内容延伸进状态栏区域，各页面顶部容器通过
+       padding-top: calc(原值 + var(--status-bar-height)) 预留避让。
+
+       配置方式（按需二选一）：
+       1) 默认使用系统安全区（推荐，随设备自动适配，依赖 index.html 的
+          viewport-fit=cover，非沉浸式环境自动为 0）：
+            --status-bar-height: env(safe-area-inset-top, 0px);
+       2) 手动指定固定值（需按目标设备调整，1rem = 100px）：
+          Android 常见 0.44rem / iOS 刘海屏约 0.59rem：
+            --status-bar-height: 0.44rem;
+       ===================================================================== */
+    --status-bar-height: env(safe-area-inset-top, 44px);
+}
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+button,
+a,
+img,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 隐藏全局滚动条（移动端 H5 体验） */
+html,body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    user-select: none;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* 兜底：隐藏所有元素（含 NutUI 等第三方组件内部滚动容器）的滚动条。
+   注意：这条只管 H5 内部的 CSS 滚动条；真机 WebView 的原生滚动指示器
+   由原生层绘制、CSS 无法控制，需在基座 RN 侧关闭 —— 见
+   app_base/src/webview/WebViewBridge.tsx 的
+   showsVerticalScrollIndicator / showsHorizontalScrollIndicator。 */
+* {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.q-button,
+.q-button * {
+    border-radius: 1rem !important;
+}
+
+/* 页面容器：
+   - box-sizing: border-box；
+   - min-height: 100% —— 相对 BasicLayout 的 main（唯一滚动容器）撑满，
+     短页不留空、长页由 main 滚动。不在 page-container 上滚动（避免双层滚动）。 */
+.page-container {
+    box-sizing: border-box;
+    min-height: 100%;
+    background: #f5f7fb;
+}
+
+/* 页面顶部渐变背景：仅覆盖视口高度的 30%，其余区域保持底色。 */
+.page-gradient-background {
+    background-color: #F4F5F9;
+    background-image: linear-gradient(180deg, #DBEBFB 0%, #F4F5F9 100%);
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: 100% 30vh;
+}
+
+.page-container::-webkit-scrollbar {
+    display: none;
+}
+
+.q-title {
+  color: #1a1a1a;
+  font-size: 0.22rem;
+  font-weight: 700;
+}
+.q-button { width: 100%; height: 0.5rem; }
+.ui-card { background: #fff; border-radius: 0.12rem; box-shadow: 0 0.02rem 0.12rem rgba(0,0,0,0.04); }
+.ui-empty-state { padding: 0.6rem 0; color: #999; font-size: 0.15rem; text-align: center; }
+
+/* 顶部通栏标题区：隐藏导航栏的 Tab 根页（首页 / 能力测试台）自绘头部。
+   状态栏避让在此统一处理——导航栏不再占位后，页面顶部间距由 hero 负责。 */
+.page-hero {
+  padding: calc(0.22rem + var(--status-bar-height)) 0.16rem 0.18rem;
+  background: linear-gradient(165deg, #d7e8ff 0%, #e9f2ff 42%, rgba(244, 245, 249, 0) 100%);
+}
+.page-hero__row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.12rem;
+}
+.page-hero__eyebrow {
+  margin: 0;
+  color: var(--main-color);
+  font-size: 0.11rem;
+  font-weight: 600;
+  letter-spacing: 0.01rem;
+}
+.page-hero__title {
+  margin: 0.03rem 0 0;
+  color: #1a1a1a;
+  font-size: 0.24rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.page-hero__desc {
+  margin: 0.05rem 0 0;
+  color: #7d8492;
+  font-size: 0.12rem;
+  line-height: 1.5;
+}
+
+/* 状态药丸：Bridge 连接状态等（首页与能力测试台共用）。圆点用 currentColor。 */
+.q-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.05rem;
+  flex-shrink: 0;
+  padding: 0.03rem 0.09rem;
+  border-radius: 0.99rem;
+  background: #f0f2f5;
+  color: #8a8f99;
+  font-size: 0.12rem;
+  font-weight: 500;
+}
+.q-status::before {
+  width: 0.06rem;
+  height: 0.06rem;
+  border-radius: 50%;
+  background: currentColor;
+  content: '';
+}
+.q-status--ok {
+  background: #e6f7ee;
+  color: #0a8a4a;
+}
+.q-status--connected {
+  background: #e6f4ff;
+  color: #1677ff;
+}
+.q-status--connecting {
+  background: #fff7e6;
+  color: #d48806;
+}
+.q-status--connecting::before {
+  animation: q-status-blink 1s ease-in-out infinite;
+}
+.q-status--idle {
+  background: #fdecec;
+  color: #c0392b;
+}
+@keyframes q-status-blink {
+  50% {
+    opacity: 0.25;
+  }
+}

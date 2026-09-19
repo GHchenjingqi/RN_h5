@@ -1,0 +1,22 @@
+.q-button--cancel,
+.q-button--confirm {
+  width: 0 !important;
+  min-width: 0 !important;
+  flex: 1 1 0 !important;
+  height: 0.44rem !important;
+  margin: 0 !important;
+  border-radius: 0.22rem !important;
+  font-size: 0.15rem !important;
+}
+
+.q-button--cancel {
+  border: 0.01rem solid #416cf5 !important;
+  background: #ffffff !important;
+  color: #416cf5 !important;
+}
+
+.q-button--confirm {
+  border: 0.01rem solid #416cf5 !important;
+  background: #416cf5 !important;
+  color: #ffffff !important;
+}

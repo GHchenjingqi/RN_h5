@@ -1,0 +1,128 @@
+.test-page {
+  padding: 0.16rem;
+}
+.test-page__title {
+  margin: 0 0 0.04rem;
+  color: #1a1a1a;
+  font-size: 0.22rem;
+  font-weight: 700;
+}
+.test-page__subtitle {
+  margin: 0 0 0.16rem;
+  color: #8a8f99;
+  font-size: 0.13rem;
+}
+
+.test-section {
+  box-sizing: border-box;
+  margin-bottom: 0.14rem;
+  padding: 0.18rem;
+}
+.test-section__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.1rem;
+  margin-bottom: 0.1rem;
+}
+.test-section__title {
+  margin: 0;
+  color: #1a1a1a;
+  font-size: 0.16rem;
+  font-weight: 600;
+}
+.test-section__desc {
+  margin: 0.02rem 0 0;
+  color: #8a8f99;
+  font-size: 0.12rem;
+}
+.test-section__badge {
+  flex-shrink: 0;
+  padding: 0.02rem 0.08rem;
+  border-radius: 0.04rem;
+  font-size: 0.11rem;
+  font-weight: 500;
+}
+.test-section__badge--idle {
+  background: #f0f2f5;
+  color: #8a8f99;
+}
+.test-section__badge--loading {
+  background: #e6f4ff;
+  color: #1677ff;
+}
+.test-section__badge--success {
+  background: #e6f7ee;
+  color: #0a8a4a;
+}
+.test-section__badge--error {
+  background: #fdecec;
+  color: #c0392b;
+}
+.test-section__params {
+  margin-bottom: 0.1rem;
+}
+.test-section__params label {
+  display: block;
+  margin-bottom: 0.06rem;
+  color: #555;
+  font-size: 0.12rem;
+}
+.test-section__params input,
+.test-section__params textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.08rem 0.1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.06rem;
+  font-size: 0.13rem;
+  outline: none;
+}
+.test-section__params input:focus,
+.test-section__params textarea:focus {
+  border-color: var(--main-color);
+}
+.test-section__action {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+.test-section__duration {
+  color: #8a8f99;
+  font-size: 0.11rem;
+}
+.test-section__result {
+  margin-top: 0.1rem;
+  padding: 0.1rem;
+  border-radius: 0.06rem;
+  font-size: 0.12rem;
+  line-height: 1.5;
+  word-break: break-all;
+}
+.test-section__result--success {
+  background: #f0f9f4;
+  color: #1a1a1a;
+}
+.test-section__result--error {
+  background: #fef0f0;
+  color: #c0392b;
+}
+.test-section__result-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.08rem;
+  margin-bottom: 0.06rem;
+}
+.test-section__code {
+  padding: 0.01rem 0.06rem;
+  border-radius: 0.04rem;
+  background: #c0392b;
+  color: #fff;
+  font-size: 0.1rem;
+  font-weight: 500;
+}
+.test-section__result-body {
+  max-height: 1.5rem;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}

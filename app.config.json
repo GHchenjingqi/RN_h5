@@ -1,0 +1,8 @@
+{
+  "appName": "H5调试台",
+  "apkName": "BaseH5",
+  "applicationId": "com.qux",
+  "versionName": "1.0.1",
+  "versionCode": 1,
+  "splashBackgroundColor": "#FFFFFFFF"
+}

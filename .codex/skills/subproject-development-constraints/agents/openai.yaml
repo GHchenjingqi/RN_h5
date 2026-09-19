@@ -1,0 +1,6 @@
+interface:
+  display_name: "子项目开发约束"
+  short_description: "统一京益 H5 的目录、样式与代码规范"
+  default_prompt: "Use $subproject-development-constraints for this Jingyi H5 repository task."
+policy:
+  allow_implicit_invocation: true

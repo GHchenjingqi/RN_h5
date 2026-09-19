@@ -1,0 +1,36 @@
+/* 基础布局（通用基座框架）：
+   column 高度 100vh + overflow hidden；顶部导航栏 fixed（QNavbar 自带 holder 占位）；
+   main 为唯一滚动容器；底部 Tabbar fixed，main 预留 padding-bottom 避让。 */
+.basic-layout {
+  box-sizing: border-box;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.basic-layout__main {
+  box-sizing: border-box;
+  flex: 1;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.basic-layout__main::-webkit-scrollbar {
+  display: none;
+}
+
+/* Tabbar 占位高度：main 预留底部空间，避免末尾内容被 fixed Tabbar 遮挡。 */
+.basic-layout__main {
+  --page-bottom-space: 0.56rem;
+  padding-bottom: 0.56rem;
+}
+.basic-layout__main--no-tabbar {
+  --page-bottom-space: 0rem;
+  padding-bottom: 0;
+}
+
+.basic-layout__tabbar {
+  padding-top: 0.04rem;
+  padding-bottom: 0.12rem;
+}

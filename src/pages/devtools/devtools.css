@@ -1,0 +1,218 @@
+/* 顶部通栏头部与状态药丸用全局 .page-hero / .q-status（隐藏导航栏后页面自绘） */
+.devtools-page {
+  padding: 0;
+}
+
+/* 通用卡片区块 */
+.devtools-card {
+  box-sizing: border-box;
+  margin: 0 0.14rem 0.12rem;
+  padding: 0.16rem;
+}
+.devtools-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.08rem;
+  margin-bottom: 0.1rem;
+}
+.devtools-card__title {
+  margin: 0;
+  color: #1a1a1a;
+  font-size: 0.16rem;
+  font-weight: 600;
+}
+.devtools-card__hint {
+  margin: 0 0 0.08rem;
+  color: #8a8f99;
+  font-size: 0.11rem;
+}
+
+.devtools-btn {
+  padding: 0.04rem 0.12rem;
+  border: 1px solid rgba(33, 107, 255, 0.3);
+  border-radius: 0.99rem;
+  background: rgba(33, 107, 255, 0.06);
+  color: var(--main-color);
+  font-size: 0.12rem;
+  cursor: pointer;
+}
+.devtools-btn:active {
+  background: rgba(33, 107, 255, 0.14);
+}
+
+/* 版本信息 chips */
+.devtools-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.06rem;
+}
+.devtools-chip {
+  padding: 0.03rem 0.08rem;
+  border-radius: 0.05rem;
+  background: #f0f2f5;
+  color: #555;
+  font-size: 0.11rem;
+}
+.devtools-chip--warn {
+  background: #fff7e6;
+  color: #d48806;
+}
+.devtools-error {
+  margin: 0.1rem 0 0;
+  padding: 0.08rem;
+  border-radius: 0.06rem;
+  background: #fef0f0;
+  color: #c0392b;
+  font-size: 0.12rem;
+  word-break: break-all;
+}
+
+.devtools-summary {
+  color: #8a8f99;
+  font-size: 0.11rem;
+}
+
+/* 能力矩阵列表 */
+.devtools-matrix {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.devtools-row {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.11rem 0.02rem;
+  border: 0;
+  border-bottom: 1px solid #f0f2f5;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+.devtools-row:last-child {
+  border-bottom: 0;
+}
+.devtools-row:active {
+  background: #f7f9fc;
+}
+.devtools-row__mark {
+  flex-shrink: 0;
+  width: 0.36rem;
+  height: 0.36rem;
+  border-radius: 0.1rem;
+  color: #fff;
+  font-size: 0.11rem;
+  font-weight: 600;
+  line-height: 0.36rem;
+  text-align: center;
+}
+.devtools-row__main {
+  flex: 1;
+  min-width: 0;
+}
+.devtools-row__name {
+  display: flex;
+  align-items: baseline;
+  gap: 0.06rem;
+  color: #1a1a1a;
+  font-size: 0.14rem;
+  font-weight: 600;
+}
+.devtools-row__apis {
+  color: #b3b8c2;
+  font-size: 0.1rem;
+  font-style: normal;
+  font-weight: 400;
+}
+.devtools-row__desc {
+  display: block;
+  overflow: hidden;
+  color: #8a8f99;
+  font-size: 0.11rem;
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.devtools-row__arrow {
+  flex-shrink: 0;
+  width: 0.06rem;
+  height: 0.06rem;
+  border-top: 1px solid #c4c9d2;
+  border-right: 1px solid #c4c9d2;
+  transform: rotate(45deg);
+}
+
+/* 能力状态标签 */
+.devtools-tag {
+  flex-shrink: 0;
+  padding: 0.02rem 0.07rem;
+  border-radius: 0.04rem;
+  background: #f0f2f5;
+  color: #8a8f99;
+  font-size: 0.1rem;
+  font-weight: 500;
+}
+.devtools-tag--ok {
+  background: #e6f7ee;
+  color: #0a8a4a;
+}
+.devtools-tag--no {
+  background: #fdecec;
+  color: #c0392b;
+}
+.devtools-tag--native {
+  background: #fff1e6;
+  color: #d46b08;
+}
+.devtools-tag--pending {
+  background: #e6f4ff;
+  color: #1677ff;
+}
+
+/* 事件流 */
+.devtools-events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 2.4rem;
+  overflow-y: auto;
+}
+.devtools-event {
+  display: flex;
+  align-items: baseline;
+  gap: 0.08rem;
+  padding: 0.06rem 0;
+  border-bottom: 1px dashed #f0f2f5;
+  font-size: 0.11rem;
+}
+.devtools-event:last-child {
+  border-bottom: 0;
+}
+.devtools-event__time {
+  flex-shrink: 0;
+  color: #b3b8c2;
+  font-variant-numeric: tabular-nums;
+}
+.devtools-event__name {
+  flex-shrink: 0;
+  color: var(--main-color);
+  font-weight: 500;
+}
+.devtools-event__data {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: #555;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.devtools-empty {
+  margin: 0;
+  padding: 0.16rem 0;
+  color: #b3b8c2;
+  font-size: 0.12rem;
+  text-align: center;
+}
