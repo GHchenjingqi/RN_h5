@@ -4,6 +4,23 @@
 
 > 本项目为**通用基座**，不承载任何业务功能。仅保留与 RN 基座的 Bridge 通信能力 + 一个设备能力调试台（devtools），供后续扩展 RN 基座设备能力时验证。
 
+## 配套仓库（两仓配合使用）
+
+| 仓库 | 角色 | 与本仓的关系 |
+|---|---|---|
+| [RNbase](https://github.com/GHchenjingqi/RNbase) | RN 基座 / Native Container | 承载本应用的 WebView，提供全部原生能力 |
+| **RN_h5**（本仓库） | 基座的**能力测试子应用** | `npm run build:base` 把 `dist/` 同步到基座 `h5/`，再由基座打进 APK assets |
+
+约束与契约：
+
+- 本应用不直接调任何原生 API，全部经 `window.RN` 中间件；`public/js/api.js` 的唯一真源是基座
+  `scripts/api.js`，两边 **md5 必须一致**（`npm run sync:api` 拉取，`npm run build` 会自动注入产物）。
+- 注入与品牌下发都按「基座是本工程的同级目录 `app_base`」定位；基座克隆成了别的目录名
+  （如 `RNbase`）时，用 `BASE_DIR=<基座路径>` 覆盖，例如
+  `BASE_DIR=../RNbase npm run build`。基座缺失时脚本会明确报错，不会静默产出旧协议。
+- 单独克隆本仓库只能跑 `npm run dev`（浏览器 Mock，结果不代表真机）；
+  要出真机包必须同时有基座仓库。
+
 ## 技术栈
 
 - **框架**：React 18 + Vite 5
@@ -27,6 +44,7 @@ base_h5/
 │       └── api.js            # RN Bridge 中间件（window.RN），通信核心（由基座同步）
 ├── scripts/
 │   ├── sync-to-base.js       # 构建产物同步到 RN 基座 h5/ 目录
+│   ├── inject-api.js         # 薄壳：委托基座 inject-h5-api.js 覆盖 api.js（支持 BASE_DIR）
 │   └── apply-app-meta.js     # 委托基座 scripts/apply-app-meta.js 下发品牌与版本
 └── src/
     ├── main.jsx              # 应用入口：rem 适配 + NutUI 样式 + 状态栏高度 + 启动握手

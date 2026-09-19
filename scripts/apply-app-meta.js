@@ -15,9 +15,7 @@ const projectRoot = path.resolve(
   ".."
 );
 const baseScript = path.resolve(
-  projectRoot,
-  "..",
-  "app_base",
+  process.env.BASE_DIR || path.resolve(projectRoot, "..", "app_base"),
   "scripts",
   "apply-app-meta.js"
 );

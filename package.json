@@ -3,12 +3,18 @@
   "version": "1.0.1",
   "private": true,
   "type": "module",
+  "description": "RN 基座的能力测试子应用（H5），配套仓库见 RNbase",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GHchenjingqi/RN_h5.git"
+  },
+  "homepage": "https://github.com/GHchenjingqi/RN_h5",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node ../app_base/scripts/inject-h5-api.js ../app_h5/dist",
-    "build:base": "vite build && node ../app_base/scripts/inject-h5-api.js ../app_h5/dist && node scripts/sync-to-base.js && node scripts/apply-app-meta.js",
+    "build": "vite build && node scripts/inject-api.js dist",
+    "build:base": "vite build && node scripts/inject-api.js dist && node scripts/sync-to-base.js && node scripts/apply-app-meta.js",
     "sync:base": "node scripts/sync-to-base.js",
-    "sync:api": "node ../app_base/scripts/inject-h5-api.js ../app_h5/public",
+    "sync:api": "node scripts/inject-api.js public",
     "preview": "vite preview"
   },
   "dependencies": {
