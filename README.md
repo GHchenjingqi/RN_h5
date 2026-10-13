@@ -15,9 +15,9 @@
 
 - 本应用不直接调任何原生 API，全部经 `window.RN` 中间件；`public/js/api.js` 的唯一真源是基座
   `scripts/api.js`，两边 **md5 必须一致**（`npm run sync:api` 拉取，`npm run build` 会自动注入产物）。
-- 注入与品牌下发都按「基座是本工程的同级目录 `app_base`」定位；基座克隆成了别的目录名
-  （如 `RNbase`）时，用 `BASE_DIR=<基座路径>` 覆盖，例如
-  `BASE_DIR=../RNbase npm run build`。基座缺失时脚本会明确报错，不会静默产出旧协议。
+- 注入与品牌下发都按「基座是本工程的同级目录 `RNbase`」定位；基座克隆成了别的目录名
+  时，用 `BASE_DIR=<基座路径>` 覆盖，例如
+  `BASE_DIR=../其他目录名 npm run build`。基座缺失时脚本会明确报错，不会静默产出旧协议。
 - 单独克隆本仓库只能跑 `npm run dev`（浏览器 Mock，结果不代表真机）；
   要出真机包必须同时有基座仓库。
 
@@ -75,7 +75,7 @@ npm run preview      # 预览构建产物
 
 ## 构建与同步到基座
 
-子包构建产物需同步到 RN 基座的 h5 目录（`../app_base/h5`）：
+子包构建产物需同步到 RN 基座的 h5 目录（`../RNbase/h5`）：
 
 ```bash
 npm run build:base   # 构建 + 注入基座 api.js + 同步到基座 h5/
@@ -128,10 +128,10 @@ hero 结构，不要让内容直接顶到状态栏。子页（`/about`、`/test/
 品牌资源由本应用持有，主图是 `app-brand/icon.png`（1024×1024，蓝色渐变圆角方块 + 白色 `⟨ • ⟩`）：
 
 ```bash
-cd ../app_base
-npm run brand:gen -- --src ../app_h5/app-brand/icon.png --out ../app_h5/app-brand/android \
+cd ../RNbase
+npm run brand:gen -- --src ../RN_h5/app-brand/icon.png --out ../RN_h5/app-brand/android \
   --inset 0.085 --radius 0.22      # 五密度 ic_launcher / ic_launcher_round / splash_logo
-npm run brand:apply -- --app app_h5 # 下发到基座 res/（切换活动 App 用 app:use）
+npm run brand:apply -- --app RN_h5 # 下发到基座 res/（切换活动 App 用 app:use）
 ```
 
 `--inset 0.085` 是按比例裁掉主图四周的白边与右下角水印，改主图后需重新确认裁切比例

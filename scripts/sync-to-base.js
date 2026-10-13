@@ -4,7 +4,7 @@
  *
  * 用法：
  *   node scripts/sync-to-base.js
- *   BASE_H5=D:/codes/app/app_base/h5 node scripts/sync-to-base.js   # 覆盖目标路径
+ *   BASE_H5=D:/codes/RNbase/h5 node scripts/sync-to-base.js   # 覆盖目标路径
  *
  * 行为：
  *   1. 校验 dist/index.html 存在（无则报错退出）。
@@ -20,8 +20,8 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..');
 
-// 基座 h5 目录：默认取本工程同级 app_base/h5，可用环境变量 BASE_H5 覆盖
-const defaultBase = path.resolve(projectRoot, '..', 'app_base', 'h5');
+// 基座 h5 目录：默认取本工程同级 RNbase/h5，可用环境变量 BASE_H5 覆盖
+const defaultBase = path.resolve(projectRoot, '..', 'RNbase', 'h5');
 const baseH5 = process.env.BASE_H5 || defaultBase;
 const distDir = path.join(projectRoot, 'dist');
 

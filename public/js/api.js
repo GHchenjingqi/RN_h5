@@ -409,11 +409,15 @@
               location: false,
               filePicker: false,
               share: false,
+              clipboard: false,
+              openApp: false,
               nfc: false,
             },
           },
+          'app.getClientId': { clientId: 'web' },
           'app.ready': { ok: true },
           'app.lifecycle': { ok: true },
+          'app.nativeBackResult': { ok: true },
           // AUTH：浏览器环境从 localStorage 动态读取登录态（与 H5 子项目 base_h5: 命名空间一致），
           // 登录后 H5 侧存入 base_h5:token / base_h5:userInfo，Mock 动态读取保证 RN.AUTH.GETTOKEN()/GETUSER() 与 H5 登录态同步
           'auth.getToken': function () {
@@ -562,8 +566,11 @@
       GETINFO: 'getInfo',
       GETVERSION: 'getVersion',
       GETCAPABILITIES: 'getCapabilities',
+      GETCLIENTID: 'getClientId',
       READY: 'ready',
       LIFECYCLE: 'lifecycle',
+      // 硬件返回回执：H5 处理完 native.back 后用 { consumed } 告诉容器要不要继续走系统返回
+      NATIVEBACKRESULT: 'nativeBackResult',
     },
     AUTH: {
       GETTOKEN: 'getToken',
@@ -593,10 +600,30 @@
     LOCATION: {
       GETCURRENTPOSITION: 'getCurrentPosition',
     },
+    // 剪贴板读写：浏览器无对应 Mock（navigator.clipboard 需用户手势与权限），
+    // 走默认分支回 DEVICE_UNSUPPORTED，H5 据此隐藏「复制」入口。
+    CLIPBOARD: {
+      GETSTRING: 'getString',
+      SETSTRING: 'setString',
+      HASSTRING: 'hasString',
+    },
     NFC: {
       AVAILABLE: 'isAvailable',
       READTAG: 'readTag',
       WRITENDEF: 'writeNdef',
+    },
+    // 远程全量升级（整包替换，仅安卓）：浏览器环境故意不写 Mock，让默认分支回
+    // DEVICE_UNSUPPORTED，H5 据此判定「不在 App 里，不提示升级」。
+    UPDATE: {
+      GETINFO: 'getInfo',
+      STARTDOWNLOAD: 'startDownload',
+      GETPROGRESS: 'getProgress',
+      CANCELDOWNLOAD: 'cancelDownload',
+      INSTALL: 'install',
+      CANREQUESTINSTALL: 'canRequestInstall',
+      OPENINSTALLSETTINGS: 'openInstallSettings',
+      COPYTODOWNLOADS: 'copyToDownloads',
+      CLEANUP: 'cleanup',
     },
     SYSTEM: {
       VIBRATE: 'vibrate',
@@ -620,6 +647,7 @@
     },
     PERMISSION: {
       REQUEST: 'request',
+      REQUESTALL: 'requestAll',
       CHECK: 'check',
       OPENSETTINGS: 'openSettings',
     },
@@ -650,6 +678,25 @@
       };
     });
     RN[moduleUpper] = moduleObj;
+  });
+
+  // APPMANAGER 特例：桥接模块名是驼峰 appManager，通用生成器会把模块名整段小写成
+  // appmanager（RN 侧收不到），故与 RN.READY 一样单独挂载。
+  var APP_MANAGER_MODULE = 'appManager';
+  var APP_MANAGER_ACTIONS = {
+    ISINSTALLED: 'isInstalled',
+    OPENAPP: 'openApp',
+    OPENAPPSTORE: 'openAppStore',
+    OPENAPPSETTINGS: 'openAppSettings',
+    OPENSYSTEMSETTINGS: 'openSystemSettings',
+    GETINSTALLEDAPPS: 'getInstalledApps',
+  };
+  RN.APPMANAGER = {};
+  Object.keys(APP_MANAGER_ACTIONS).forEach(function (actionUpper) {
+    var actionLower = APP_MANAGER_ACTIONS[actionUpper];
+    RN.APPMANAGER[actionUpper] = function (params) {
+      return client.request(APP_MANAGER_MODULE, actionLower, params);
+    };
   });
 
   // 顶层工具方法
